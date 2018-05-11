@@ -39,6 +39,8 @@ public final class Button implements ActionListener {
     
     @Override public void actionPerformed(ActionEvent e) {
         
+        // Guardo en variables los datos necesarios parea formar el comando
+        
         String outdir = JOptionPane.showInputDialog("Directorio de salida");
         String outfile = JOptionPane.showInputDialog("Nombre del archivo");
         String srcdir = JOptionPane.showInputDialog("Directorio de la app");
@@ -57,9 +59,15 @@ public final class Button implements ActionListener {
         try {
             System.out.println(cmd); // En esta linea debugeo el comando
             
+            // Ejecuto el comando en el terminal
+            
             Process process = Runtime.getRuntime().exec(cmd); 
             InputStream inputstream = process.getInputStream();
             BufferedInputStream bufferedinputstream = new BufferedInputStream(inputstream);
+            
+            // MUestro una pantalla de que se ejecuto el comando, 
+            // en caso de no funcionar va directamente al "catch" y no pasa por aquí
+            
             JOptionPane.showInputDialog("Comando ejecutado");
             
         } catch (IOException ex) {
